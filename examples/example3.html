@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://127.0.0.1:4867/ -->
+<html class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <script type="application/shiny-singletons">9e34be8a683ff60410a425b5e4e06b78e409e342</script>
+  <script type="application/html-dependencies">json2[2014.02.04];jquery[3.5.1];shiny[1.5.0];bootstrap[3.4.1]</script>
+<script src="./example3_files/json2-min.js.download"></script>
+<script src="./example3_files/jquery.min.js.download"></script>
+<link href="./example3_files/shiny.css" rel="stylesheet">
+<script src="./example3_files/shiny.min.js.download"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="./example3_files/bootstrap.min.css" rel="stylesheet">
+<script src="./example3_files/bootstrap.min.js.download"></script>
+<script src="./example3_files/html5shiv.min.js.download"></script>
+<script src="./example3_files/respond.min.js.download"></script>  <link rel="stylesheet" type="text/css" href="./example3_files/sandstone.min.css">
+  <title>
+    &lt;h1&gt;Finding Music Matches&lt;/h1&gt;
+  </title>
+  <script src="./example3_files/shinyFiles.js.download"></script>
+  <link rel="stylesheet" type="text/css" href="./example3_files/styles.css">
+  <link rel="stylesheet" type="text/css" href="./example3_files/fileIcons.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <h2>
+      </h2><h1>Finding Music Matches</h1>
+    
+    <div class="row">
+      <div class="col-sm-4">
+        <form class="well">
+          <button id="file1" type="button" class="shinyFiles btn btn-default action-button shiny-bound-input" data-title="Please select a file" data-selecttype="single" data-view="sF-btn-detail">Choose a WAV snippet</button>
+          <div id="txt_file" class="shiny-text-output shiny-bound-output"></div>
+          <br>
+          <div class="form-group shiny-input-container">
+            <label class="control-label" for="url">Upload a .wav or .mp3 from a URL</label>
+            <input id="url" type="text" class="form-control shiny-bound-input" value="">
+          </div>
+          <div id="value" class="shiny-text-output shiny-bound-output"></div>
+          <button id="recording" style="width: 200px;" type="button" class="btn btn-default action-button shiny-bound-input">Record audio</button>
+          <hr style="border-top: 1px dotted #000000;">
+          <button id="folder1" type="button" class="shinyDirectories btn btn-default action-button shiny-bound-input" data-title="Please select a folder">Get Recommendations (Folder)</button>
+          <div id="txt_folder" class="shiny-text-output shiny-bound-output">C:/snippets</div>
+          <br>
+          <hr style="border-top: 2px solid #000000;">
+          <div id="method" class="form-group shiny-input-radiogroup shiny-input-container shiny-bound-input">
+            <label class="control-label" for="method">Method</label>
+            <div class="shiny-options-group">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="method" value="one" checked="checked">
+                  <span>Frequencies where Max Peaks occur</span>
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="method" value="five">
+                  <span>Max Peaks in Eight Increasing Octaves</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group shiny-input-container">
+            <label class="control-label" for="epsilon">Epsilon (distance-threshold):</label>
+            <input id="epsilon" type="number" class="form-control shiny-bound-input" value="0.000001">
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-8">
+        <div id="step1" class="shiny-html-output shiny-bound-output"><header> 
+           <h2><b>Step 1<b></b></b></h2><b><b> 
+           </b></b></header></div>
+        <div id="text_intro" class="shiny-html-output shiny-bound-output">Welcome to Freezam! <br> <br>
+        To begin, please use the left-hand panel to either upload a snippet of 
+         a song you would like to be matched too, a URL to a WAV or MP3 snippet,
+         or select the 'record' option. The record option will record 25 seconds of audio. 
+         Alternatively, you can also choose to get some recommendations to artists and songs by instead selecting a folder with songs inside! <br> <br>
+         Also, please be sure to select your preferred method of fingerprinting, and specified epsilon value. <br> <br></div>
+        <div id="step2" class="shiny-html-output shiny-bound-output"><header>
+           <h2><b>Step 2<b></b></b></h2><b><b>
+           </b></b></header></div>
+        <div id="time_remaining" class="shiny-text-output shiny-bound-output"></div>
+        <div id="text_spec" class="shiny-html-output shiny-bound-output">You have chosen to recommend some songs! <br> <br>
+             Please wait while the system finds some matches. <br> <br>
+             Calculating... <br> <br></div>
+        <div id="plot1" class="shiny-image-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        <br>
+        <br>
+        <div id="step3" class="shiny-html-output shiny-bound-output"><header>
+           <h2><b>Step 3<b></b></b></h2><b><b>
+           </b></b></header></div>
+        <div id="text_audio" class="shiny-html-output shiny-bound-output"></div>
+        <pre id="text_results" class="shiny-text-output noplaceholder shiny-bound-output"></pre>
+        <div id="great" class="shiny-html-output shiny-bound-output"><header><h3>10 Closest Songs</h3></header> Love Lockdown<br>Miss Americana and the Heartbreak Prince<br>Call Me Maybe<br>Heartless<br>Can't Help Falling In Love<br>Airplanes<br>Jar of Hearts<br>Forgot About Dre<br>Feliz Navidad<br>Come &amp; Get It <header><h3>10 Closest Artists</h3></header> Kanye West<br>Taylor Swift<br>Carly Rae Jepsen<br>Christina Perri<br>B.o.B ft. Hayley Williams<br>Michael Buble<br>Haley Reinhart<br>Dr. Dre ft. Eminem<br>ABBA<br>Colbie Caillat</div>
+        <div id="lyrics" class="shiny-html-output shiny-bound-output"></div>
+      </div>
+    </div>
+  </div>
+
+
+</body></html>
